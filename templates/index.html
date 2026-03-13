@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PDF Splitter</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+</head>
+<body>
+    <div class="background-blobs">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+    </div>
+
+    <main class="container">
+        <header>
+            <i data-lucide="scissors" class="logo-icon"></i>
+            <h1>PDF Splitter</h1>
+            <p>Extract pages with precision and style.</p>
+        </header>
+
+        <div class="glass-panel">
+            <form id="uploadForm">
+                <div class="upload-area" id="dropZone">
+                    <input type="file" id="fileInput" name="file" accept=".pdf" hidden>
+                    <div class="upload-content">
+                        <i data-lucide="upload-cloud" class="upload-icon"></i>
+                        <p class="upload-text">Drag & drop your PDF here</p>
+                        <button type="button" class="btn-secondary" onclick="document.getElementById('fileInput').click()">Browse Files</button>
+                    </div>
+                    <div class="file-info" id="fileInfo" style="display: none;">
+                        <i data-lucide="file-text" class="file-icon"></i>
+                        <span id="fileName">example.pdf</span>
+                        <button type="button" class="btn-icon" id="removeFile"><i data-lucide="x"></i></button>
+                    </div>
+                </div>
+
+                <div class="controls">
+                    <div id="rulesContainer">
+                        <!-- Rules will be added here via JS -->
+                    </div>
+                    
+                    <button type="button" class="btn-secondary" id="addRuleBtn" style="width: 100%; margin: 1rem 0;">
+                        <i data-lucide="plus"></i> Add Split Rule
+                    </button>
+                </div>
+
+                <button type="submit" class="btn-primary" id="splitBtn" disabled>
+                    <span>Split & Download</span>
+                    <i data-lucide="download"></i>
+                </button>
+            </form>
+            <div id="statusMessage"></div>
+        </div>
+    </main>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>
